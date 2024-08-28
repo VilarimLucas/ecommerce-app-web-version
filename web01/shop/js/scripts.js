@@ -1,5 +1,5 @@
 function getAllProducts() {
-    axios.get('https://localhost:44347/api/Product')
+    axios.get('https://localhost:44345/api/Product')
         .then((response) => {
             const products = response.data;
             console.log(products);
@@ -14,7 +14,7 @@ function getAllProducts() {
                         <img src="./img/${product.productImage}" alt="">
                     </div>
                     <div class="product-body">
-                        <p class="product-category">Category</p>
+                        <p class="product-category">${product.productCategory}</p>
                         <h3 class="product-name"><a href="#">${product.productName}</a></h3>
                         <h4 class="product-price">R$${product.productPrice} <del class="product-old-price">R$${product.productPrice}</del></h4>
                         <div class="product-rating">
@@ -35,7 +35,6 @@ function getAllProducts() {
                     </div>`;
                 productList.appendChild(productElement);
             });
-
             // Re-inicializa Slick Slider
             $('.products-slick').slick('unslick'); // Destroy any slick slider before initializing it again
             $('.products-slick').slick({
@@ -65,8 +64,6 @@ function getAllProducts() {
         })
         .catch((error) => console.error('Error loading products:', error));
 }
-
-
 document.addEventListener('DOMContentLoaded', function() {
     getAllProducts();
 });
